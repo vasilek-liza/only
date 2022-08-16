@@ -1,4 +1,4 @@
-export interface IUserBody {
+export interface IUser {
     username: string;
     password: string;
 }

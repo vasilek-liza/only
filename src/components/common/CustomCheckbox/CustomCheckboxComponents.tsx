@@ -25,6 +25,7 @@ const CheckboxComponent= styled.div`
             box-sizing: border-box;
         }
     }
+    
     input {
         position: absolute;
         opacity: 0;

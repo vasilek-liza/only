@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { authAPI } from "../../api/AuthAPI";
-import { IUserBody } from "../../interfaces/IData";
+import { IUser } from "../../interfaces/IUser";
 import { setUsername } from "./AuthSlice";
 
 export const getToken = createAsyncThunk("getToken", 
-    async (payload: {data: IUserBody, checked: boolean}, thunkAPI): Promise<any> => {
+    async (payload: {data: IUser, checked: boolean}, thunkAPI): Promise<any> => {
     try {
         const { data: { access_token }} = await authAPI.getToken(payload.data);
         thunkAPI.dispatch(setUsername(payload.data.username));

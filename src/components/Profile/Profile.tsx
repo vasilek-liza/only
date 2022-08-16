@@ -8,11 +8,9 @@ import { resources } from '../../resources';
 
 export const Profile: FC = () => {
   const dispatch = useAppDispatch();
-  const { username } = useAppSelector((state: any) => state.authReducer);
+  const { username } = useAppSelector(state => state.authReducer);
   const logOut = () => {
     dispatch(removeToken());
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("username");
   }
 
   return (

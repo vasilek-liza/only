@@ -1,6 +1,12 @@
-import { ICheckboxProps } from '../../../interfaces/ICheckboxProps';
 import components from './CustomCheckboxComponents';
 import style from '../../Autification/AutificationComponents';
+
+interface ICheckboxProps {
+    type: string;
+    name: string;
+    checked: boolean;
+    onChange: () => void
+}
 
 export const CustomCheckbox: React.FC<ICheckboxProps> = ({type, name, checked, onChange}) => {
     return (

@@ -12,11 +12,11 @@ function App() {
   const dispatch = useAppDispatch();
   
   useEffect(() => {
-    let tokenLocalStorage = localStorage.getItem('accessToken');
-    let usernameLocalStorage = localStorage.getItem('username');
-    if(tokenLocalStorage && usernameLocalStorage) {
-      dispatch(writeToken(tokenLocalStorage));
-      dispatch(setUsername(usernameLocalStorage));
+    let accessToken = localStorage.getItem('accessToken');
+    let username = localStorage.getItem('username');
+    if(accessToken && username) {
+      dispatch(writeToken(accessToken));
+      dispatch(setUsername(username));
     }
   }, [])
 

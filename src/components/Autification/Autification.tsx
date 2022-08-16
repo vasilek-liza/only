@@ -5,17 +5,17 @@ import { CustomButton } from '../common/CustomButton/CustomButton';
 import { resources } from '../../resources';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { useForm} from "react-hook-form";
-import { Error } from '../common/IconsComponents/Error';
+import { ErrorIcon } from '../common/ErrorIcon';
 import components from './AutificationComponents';
-import { IUserBody } from '../../interfaces/IData';
+import { IUser } from '../../interfaces/IUser';
 import { CustomCheckbox } from '../common/CustomCheckbox/CustomCheckbox';
 
 export const Autification: FC = () => {
-  const { register, getValues, handleSubmit, formState: { errors } } = useForm<IUserBody>();
+  const { register, getValues, handleSubmit, formState: { errors } } = useForm<IUser>();
   const [checked, setChecked] = useState(false);
   const dispatch = useAppDispatch();
   const { error, loading } = useAppSelector((state) => state.authReducer);
-  const onSubmit = async(data: IUserBody) => {
+  const onSubmit = async(data: IUser) => {
     try {
       await dispatch(getToken({data, checked}));
     } finally{}
@@ -23,10 +23,13 @@ export const Autification: FC = () => {
 
   return (
     <components.AutificationComponent>
-      { error&&!loading ? 
-        <components.ErrorAuth><Error/>
-          <p>Пользователя {getValues("username")} не существует</p>
-        </components.ErrorAuth>
+      {error && !loading 
+        ? ( 
+          <components.ErrorAuth>
+            <ErrorIcon />
+            <p>Пользователя {getValues("username")} не существует</p>
+          </components.ErrorAuth>
+        )
         : ""
       }
       <components.Form onSubmit={handleSubmit(onSubmit)}>
@@ -37,6 +40,7 @@ export const Autification: FC = () => {
           type="username" 
           {...register("username", { required: true })} 
         />
+
         {errors.username && errors.username.type === "required" && 
           <components.ErrorInput>Обязательное поле</components.ErrorInput>
         }
@@ -47,6 +51,7 @@ export const Autification: FC = () => {
           type="password" 
           {...register("password", { required: true })} 
         />
+
         {errors.password && errors.password.type === "required" &&  
           <components.ErrorInput>Обязательное поле</components.ErrorInput>
         }
@@ -56,14 +61,17 @@ export const Autification: FC = () => {
           name="checkbox" 
           checked={checked}
           onChange={() => setChecked(!checked)} 
-        />  
+        /> 
+
         <CustomButton 
           text={resources.login} 
           type="submit" 
           login={true}
           disabled={loading}
         />
+
       </components.Form>
+
     </components.AutificationComponent>
   );
 }

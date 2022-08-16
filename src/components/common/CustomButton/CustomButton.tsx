@@ -1,6 +1,14 @@
 import './CustomButtonComponents.tsx';
 import components from './CustomButtonComponents';
-import { IButtonProps } from '../../../interfaces/IButtonProps';
+
+interface IButtonProps {
+    text: string,
+    children?: any,
+    onClick?: () => void,
+    type?: "button" | "submit" | "reset",
+    disabled?: boolean,
+    login?: boolean,
+}
 
 export const CustomButton: React.FC<IButtonProps> = ({text, disabled, children, login, onClick, type}) => {
 

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-interface IButton {
+interface IButtonProps {
   login?: boolean,
 }
 
-const Button = styled.button<IButton>`
+const Button = styled.button<IButtonProps>`
   width: ${props => props.login ? "100%" : "200px"};
   background: ${props => props.login ? "#4A67FF" : "#F5F5F5"};
   border-radius: 8px;

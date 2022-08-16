@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-interface IInput {
+
+interface IInputProps {
     invalid?: boolean,
-  }
+}
 
 const Form = styled.form`
     display: flex;
@@ -14,7 +15,7 @@ const Label = styled.label`
     line-height: 19px;
     padding-bottom: 10px;
 `
-const CustomInput= styled.input<IInput>`
+const CustomInput= styled.input<IInputProps>`
     background: #F5F5F5;
     border-radius: 8px;
     padding: 21px 20px 20px;
